@@ -1,0 +1,4901 @@
+basePath: /api/v1
+definitions:
+  challenges.ChallengeDetails:
+    properties:
+      actionCount:
+        type: integer
+      challengeImg:
+        type: string
+      coin:
+        type: integer
+      description:
+        type: string
+      difficulty:
+        type: string
+      durationDays:
+        type: integer
+      exp:
+        type: integer
+      id:
+        type: string
+      participantCount:
+        type: integer
+      tasks:
+        items:
+          $ref: '#/definitions/challenges.ChallengeTask'
+        type: array
+      title:
+        type: string
+    type: object
+  challenges.ChallengeTask:
+    properties:
+      challengeID:
+        type: string
+      createdAt:
+        type: string
+      dayNumber:
+        type: integer
+      id:
+        type: string
+      name:
+        type: string
+      taskDescription:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  controller.AdminInfoResponse:
+    properties:
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      username:
+        type: string
+    type: object
+  controller.AdminLoginRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  controller.AdminLoginResponse:
+    properties:
+      token:
+        type: string
+    type: object
+  controller.AdminUpdateRequest:
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - email
+    - name
+    - password
+    - username
+    type: object
+  controller.Author:
+    properties:
+      avatar_url:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      username:
+        type: string
+    type: object
+  controller.AuthorMessage:
+    properties:
+      avatar_url:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      username:
+        type: string
+    type: object
+  controller.CartItems:
+    properties:
+      id:
+        type: string
+      product:
+        $ref: '#/definitions/controller.ProductResponse'
+      quantity:
+        type: integer
+    type: object
+  controller.CartResponse:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/controller.CartItems'
+        type: array
+      user:
+        $ref: '#/definitions/controller.User'
+    type: object
+  controller.ChallengeConfirmationResponse:
+    properties:
+      challenge_task:
+        $ref: '#/definitions/controller.ChallengeTaskResponse'
+      id:
+        type: string
+      status:
+        type: string
+      submission_date:
+        type: string
+      user_id:
+        type: string
+    type: object
+  controller.ChallengeImpactCategories:
+    properties:
+      impact_category:
+        $ref: '#/definitions/greenenvironment_features_challenges_controller.ImpactCategory'
+    type: object
+  controller.ChallengeLogRequest:
+    properties:
+      challenge_id:
+        type: string
+      feed:
+        type: string
+    required:
+    - challenge_id
+    type: object
+  controller.ChallengeLogResponse:
+    properties:
+      challenge:
+        $ref: '#/definitions/controller.ChallengeResponse'
+      challenge_confirmation:
+        items:
+          $ref: '#/definitions/controller.ChallengeConfirmationResponse'
+        type: array
+      feed:
+        type: string
+      id:
+        type: string
+      rewards_given:
+        type: boolean
+      start_date:
+        type: string
+      status:
+        type: string
+      user_id:
+        type: string
+    type: object
+  controller.ChallengeRequest:
+    properties:
+      category_impact:
+        items:
+          type: string
+        type: array
+      coin:
+        type: integer
+      description:
+        type: string
+      difficulty:
+        type: string
+      duration_days:
+        type: integer
+      exp:
+        type: integer
+      title:
+        type: string
+    required:
+    - category_impact
+    - coin
+    - description
+    - difficulty
+    - duration_days
+    - exp
+    - title
+    type: object
+  controller.ChallengeResponse:
+    properties:
+      author:
+        type: string
+      categories:
+        items:
+          $ref: '#/definitions/controller.ChallengeImpactCategories'
+        type: array
+      challenge_img:
+        type: string
+      coin:
+        type: integer
+      deleted_at:
+        type: string
+      description:
+        type: string
+      difficulty:
+        type: string
+      duration_days:
+        type: integer
+      exp:
+        type: integer
+      id:
+        type: string
+      title:
+        type: string
+    type: object
+  controller.ChallengeTaskRequest:
+    properties:
+      challenge_id:
+        type: string
+      day_number:
+        minimum: 1
+        type: integer
+      name:
+        type: string
+      task_description:
+        type: string
+    required:
+    - challenge_id
+    - day_number
+    - name
+    - task_description
+    type: object
+  controller.ChallengeTaskResponse:
+    properties:
+      challenge_id:
+        type: string
+      created_at:
+        type: string
+      day_number:
+        type: integer
+      id:
+        type: string
+      name:
+        type: string
+      task_description:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  controller.ChangeResponse:
+    properties:
+      absolute:
+        type: number
+      percentage:
+        type: number
+    type: object
+  controller.ChatbotRequest:
+    properties:
+      id:
+        type: string
+      message:
+        type: string
+    required:
+    - message
+    type: object
+  controller.ChatbotResponse:
+    properties:
+      chat_id:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      message:
+        type: string
+      role:
+        type: string
+    type: object
+  controller.ClaimRewardsRequest:
+    properties:
+      challenge_log_id:
+        type: string
+    required:
+    - challenge_log_id
+    type: object
+  controller.CreateCartRequest:
+    properties:
+      product_id:
+        type: string
+      quantity:
+        type: integer
+    required:
+    - product_id
+    type: object
+  controller.CreateImpactRequest:
+    properties:
+      description:
+        minLength: 1
+        type: string
+      impact_point:
+        minimum: 0
+        type: integer
+      name:
+        minLength: 1
+        type: string
+    required:
+    - description
+    - impact_point
+    - name
+    type: object
+  controller.CreateRequest:
+    properties:
+      product_id:
+        type: string
+      rate:
+        maximum: 5
+        type: integer
+      review:
+        type: string
+    required:
+    - product_id
+    - rate
+    - review
+    type: object
+  controller.DashboardResponse:
+    properties:
+      customer_change:
+        $ref: '#/definitions/controller.ChangeResponse'
+      last_transactions:
+        items:
+          $ref: '#/definitions/controller.LastTransactionResponse'
+        type: array
+      order_change:
+        $ref: '#/definitions/controller.ChangeResponse'
+      top_categories:
+        items:
+          $ref: '#/definitions/controller.TopCategoryResponse'
+        type: array
+      total_customers:
+        type: integer
+      total_orders:
+        type: integer
+      total_transactions:
+        type: number
+      transaction_change:
+        $ref: '#/definitions/controller.ChangeResponse'
+    type: object
+  controller.ForgotPasswordRequest:
+    properties:
+      email:
+        type: string
+    required:
+    - email
+    type: object
+  controller.ForumGetDetailResponse:
+    properties:
+      author:
+        $ref: '#/definitions/controller.Author'
+      created_at:
+        type: string
+      description:
+        type: string
+      forum_messages:
+        items:
+          $ref: '#/definitions/controller.MessageResponse'
+        type: array
+      id:
+        type: string
+      title:
+        type: string
+      topic_image:
+        type: string
+      updated_at:
+        type: string
+      views:
+        type: integer
+    type: object
+  controller.ImpactCategoryResponse:
+    properties:
+      description:
+        type: string
+      id:
+        type: string
+      impact_point:
+        type: integer
+      name:
+        type: string
+    type: object
+  controller.LastTransactionResponse:
+    properties:
+      customer_name:
+        type: string
+      id:
+        type: string
+      payment_method:
+        type: string
+      products:
+        items:
+          type: string
+        type: array
+      status:
+        type: string
+      total:
+        type: number
+      transaction_date:
+        type: string
+    type: object
+  controller.LeaderboardResponse:
+    properties:
+      avatar_url:
+        type: string
+      exp:
+        type: integer
+      id:
+        type: string
+      name:
+        type: string
+      rank:
+        type: integer
+    type: object
+  controller.MessageResponse:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: string
+      message:
+        type: string
+      message_image:
+        type: string
+      updated_at:
+        type: string
+      user:
+        $ref: '#/definitions/controller.AuthorMessage'
+    type: object
+  controller.ProductImage:
+    properties:
+      image_url:
+        type: string
+    type: object
+  controller.ProductImpactCategory:
+    properties:
+      impact_category:
+        $ref: '#/definitions/greenenvironment_features_products_controller.ImpactCategory'
+    type: object
+  controller.ProductRequest:
+    properties:
+      category_impact:
+        items:
+          type: string
+        type: array
+      category_product:
+        type: string
+      coin:
+        minimum: 0
+        type: integer
+      description:
+        type: string
+      images:
+        items:
+          type: string
+        type: array
+      name:
+        type: string
+      price:
+        minimum: 0
+        type: integer
+      stock:
+        minimum: 0
+        type: integer
+    required:
+    - category_impact
+    - category_product
+    - coin
+    - description
+    - images
+    - name
+    - price
+    - stock
+    type: object
+  controller.ProductResponse:
+    properties:
+      category_impact:
+        items:
+          $ref: '#/definitions/controller.ProductImpactCategory'
+        type: array
+      category_product:
+        type: string
+      coin:
+        type: integer
+      created_at:
+        type: string
+      description:
+        type: string
+      images:
+        items:
+          $ref: '#/definitions/controller.ProductImage'
+        type: array
+      name:
+        type: string
+      price:
+        type: number
+      product_id:
+        type: string
+      stock:
+        type: integer
+      updated_at:
+        type: string
+    type: object
+  controller.ResetPasswordRequest:
+    properties:
+      new_password:
+        type: string
+    required:
+    - new_password
+    type: object
+  controller.ResponseReviewProduct:
+    properties:
+      created_at:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+      rate:
+        type: integer
+      review:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  controller.TopCategoryResponse:
+    properties:
+      category_name:
+        type: string
+      items_sold:
+        type: integer
+      total_sales:
+        type: number
+    type: object
+  controller.TransactionAllUserResponses:
+    properties:
+      created_at:
+        type: string
+      details:
+        items:
+          $ref: '#/definitions/controller.TransactionDetails'
+        type: array
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      payment_method:
+        type: string
+      snap_token:
+        type: string
+      status:
+        type: string
+      total_transaction:
+        type: number
+      updated_at:
+        type: string
+    type: object
+  controller.TransactionDetails:
+    properties:
+      price:
+        type: integer
+      product_image:
+        type: string
+      product_name:
+        type: string
+      product_quantity:
+        type: integer
+    type: object
+  controller.TransactionRequest:
+    properties:
+      cart_ids:
+        items:
+          type: string
+        type: array
+      using_coin:
+        type: boolean
+    type: object
+  controller.TransactionResponse:
+    properties:
+      amount:
+        type: integer
+      id:
+        type: string
+      snap_token:
+        type: string
+    type: object
+  controller.TransactionUserResponse:
+    properties:
+      details:
+        items:
+          $ref: '#/definitions/controller.TransactionDetails'
+        type: array
+      id:
+        type: string
+      payment_method:
+        type: string
+      snap_token:
+        type: string
+      status:
+        type: string
+      total:
+        type: number
+    type: object
+  controller.UpdateCartRequest:
+    properties:
+      product_id:
+        type: string
+      quantity:
+        type: integer
+      type:
+        enum:
+        - increment
+        - decrement
+        - qty
+        type: string
+    required:
+    - product_id
+    - type
+    type: object
+  controller.User:
+    properties:
+      address:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      username:
+        type: string
+    type: object
+  controller.UserInfoResponse:
+    properties:
+      address:
+        type: string
+      avatar_url:
+        type: string
+      coin:
+        type: integer
+      email:
+        type: string
+      exp:
+        type: integer
+      gender:
+        type: string
+      id:
+        type: string
+      is_membership:
+        type: boolean
+      name:
+        type: string
+      phone:
+        type: string
+      username:
+        type: string
+    type: object
+  controller.UserLoginRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  controller.UserLoginResponse:
+    properties:
+      token:
+        type: string
+    type: object
+  controller.UserPasswordUpdateRequest:
+    properties:
+      new_password:
+        type: string
+      old_password:
+        type: string
+      otp:
+        type: string
+    required:
+    - new_password
+    - old_password
+    - otp
+    type: object
+  controller.UserRegisterRequest:
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - name
+    - password
+    type: object
+  controller.UserRegisterResponse:
+    properties:
+      address:
+        type: string
+      avatar_url:
+        type: string
+      coin:
+        type: integer
+      email:
+        type: string
+      exp:
+        type: integer
+      gender:
+        type: string
+      id:
+        type: string
+      is_membership:
+        type: boolean
+      name:
+        type: string
+      phone:
+        type: string
+      username:
+        type: string
+    type: object
+  controller.UserUpdateRequest:
+    properties:
+      address:
+        type: string
+      gender:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+    required:
+    - address
+    - gender
+    - name
+    - phone
+    type: object
+  controller.UserVerifyRegisterRequest:
+    properties:
+      otp:
+        type: string
+    required:
+    - otp
+    type: object
+  controller.UserbyAdminRequest:
+    properties:
+      address:
+        type: string
+      gender:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+    required:
+    - address
+    - gender
+    - name
+    - phone
+    type: object
+  controller.UserbyAdminResponse:
+    properties:
+      address:
+        type: string
+      avatar_url:
+        type: string
+      created_at:
+        type: string
+      email:
+        type: string
+      gender:
+        type: string
+      id:
+        type: string
+      is_membership:
+        type: boolean
+      name:
+        type: string
+      phone:
+        type: string
+      updated_at:
+        type: string
+      username:
+        type: string
+    type: object
+  controller.UserbyAdminandPageResponse:
+    properties:
+      address:
+        type: string
+      avatar_url:
+        type: string
+      created_at:
+        type: string
+      email:
+        type: string
+      gender:
+        type: string
+      id:
+        type: string
+      is_membership:
+        type: boolean
+      name:
+        type: string
+      phone:
+        type: string
+      updated_at:
+        type: string
+      username:
+        type: string
+    type: object
+  controller.VerifyOTPRequest:
+    properties:
+      otp:
+        type: string
+    required:
+    - otp
+    type: object
+  greenenvironment_features_challenges_controller.ImpactCategory:
+    properties:
+      description:
+        type: string
+      impact_point:
+        type: integer
+      name:
+        type: string
+    type: object
+  greenenvironment_features_products_controller.ImpactCategory:
+    properties:
+      description:
+        type: string
+      impact_point:
+        type: integer
+      name:
+        type: string
+    type: object
+  helper.MetadataResponse:
+    properties:
+      data: {}
+      message:
+        type: string
+      metadata: {}
+      status:
+        type: boolean
+    type: object
+  helper.Response:
+    description: Standard API response format
+    properties:
+      data: {}
+      message:
+        type: string
+      status:
+        type: boolean
+    type: object
+  storages.ImageResponse:
+    properties:
+      image_url:
+        type: string
+    type: object
+host: greenenvironment.my.id
+info:
+  contact:
+    email: greenenvironmentcaps@gmail.com
+    name: Ecomate Team
+    url: https://github.com/GreenEnvironment-1-CapstoneProject/Backend-Go
+  description: API Documentation for Ecomate.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Ecomate Rest API
+  version: "1.0"
+paths:
+  /admin:
+    delete:
+      consumes:
+      - application/json
+      description: Remove an admin account from the system
+      parameters:
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Delete successful
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Delete admin account
+      tags:
+      - Admin
+    get:
+      consumes:
+      - application/json
+      description: Get admin details based on the JWT token provided
+      parameters:
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Admin data retrieved successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/controller.AdminInfoResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Retrieve admin details
+      tags:
+      - Admin
+    put:
+      consumes:
+      - application/json
+      description: Update admin details such as name, username, email, or password
+      parameters:
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Admin update payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/controller.AdminUpdateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Update successful
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Invalid input or validation error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Update admin profile
+      tags:
+      - Admin
+  /admin/challenges:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve all challenges with pagination.
+      parameters:
+      - description: Page number
+        in: query
+        name: pages
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Challenges retrieved successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.MetadataResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/controller.ChallengeResponse'
+                  type: array
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get all challenges
+      tags:
+      - Challenges (Admin)
+    post:
+      consumes:
+      - multipart/form-data
+      description: Create a new challenge. Requires admin role.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Challenge image file
+        in: formData
+        name: challenge_img
+        required: true
+        type: file
+      - description: Title of the challenge
+        in: formData
+        name: title
+        required: true
+        type: string
+      - description: Difficulty level
+        in: formData
+        name: difficulty
+        required: true
+        type: string
+      - description: Description of the challenge
+        in: formData
+        name: description
+        required: true
+        type: string
+      - description: Duration of the challenge in days
+        in: formData
+        name: duration_days
+        required: true
+        type: integer
+      - description: Experience points awarded for completing the challenge
+        in: formData
+        name: exp
+        required: true
+        type: integer
+      - description: Coins awarded for completing the challenge
+        in: formData
+        name: coin
+        required: true
+        type: integer
+      - collectionFormat: csv
+        description: List of impact category IDs
+        in: formData
+        items:
+          type: string
+        name: impact_categories
+        required: true
+        type: array
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Challenge created successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Create a new challenge
+      tags:
+      - Challenges (Admin)
+  /admin/challenges/{challenge_id}/tasks:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve all tasks associated with a specific challenge.
+      parameters:
+      - description: Challenge ID
+        in: path
+        name: challenge_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Tasks retrieved successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/controller.ChallengeTaskResponse'
+                  type: array
+              type: object
+        "404":
+          description: Challenge not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get all tasks by challenge ID
+      tags:
+      - Challenge Tasks (Admin)
+  /admin/challenges/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove a challenge by its ID. Requires admin role.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Challenge ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Challenge deleted successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "404":
+          description: Challenge not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Delete a challenge
+      tags:
+      - Challenges (Admin)
+    get:
+      consumes:
+      - application/json
+      description: Retrieve a specific challenge by its unique identifier.
+      parameters:
+      - description: Challenge ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Challenge retrieved successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/controller.ChallengeResponse'
+              type: object
+        "404":
+          description: Challenge not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get a challenge by ID
+      tags:
+      - Challenges (Admin)
+    put:
+      consumes:
+      - application/json
+      description: Update challenge details, including impact categories. Requires
+        admin role.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Challenge ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Updated challenge data
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/controller.ChallengeRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Challenge updated successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "404":
+          description: Challenge not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Update a challenge
+      tags:
+      - Challenges (Admin)
+  /admin/challenges/tasks:
+    post:
+      consumes:
+      - application/json
+      description: Create a new task associated with a specific challenge. Requires
+        admin role.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Task data
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/controller.ChallengeTaskRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Task created successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Create a new task for a challenge
+      tags:
+      - Challenge Tasks (Admin)
+  /admin/challenges/tasks/{task_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove a specific task by its ID. Requires admin role.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Task ID
+        in: path
+        name: task_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Task deleted successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "404":
+          description: Task not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Delete a task
+      tags:
+      - Challenge Tasks
+    get:
+      consumes:
+      - application/json
+      description: Retrieve a specific task by its ID.
+      parameters:
+      - description: Task ID
+        in: path
+        name: task_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Task retrieved successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/controller.ChallengeTaskResponse'
+                  type: array
+              type: object
+        "404":
+          description: Task not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get task by ID
+      tags:
+      - Challenge Tasks (Admin)
+    put:
+      consumes:
+      - application/json
+      description: Update the description of a specific task. Requires admin role.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Task ID
+        in: path
+        name: task_id
+        required: true
+        type: string
+      - description: Updated task data
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/controller.ChallengeTaskRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Task updated successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "404":
+          description: Task not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Update a task
+      tags:
+      - Challenge Tasks
+  /admin/dashboard:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve dashboard data filtered by weekly, monthly, or yearly
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Filter value (weekly, monthly, yearly)
+        in: query
+        name: filter
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Dashboard data retrieved successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/controller.DashboardResponse'
+              type: object
+        "400":
+          description: Invalid filter value
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get dashboard data for admin
+      tags:
+      - Dashboard
+  /admin/login:
+    post:
+      consumes:
+      - application/json
+      description: Authenticate admin and generate JWT token
+      parameters:
+      - description: Admin login payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/controller.AdminLoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Login successful
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/controller.AdminLoginResponse'
+              type: object
+        "400":
+          description: Invalid input or validation error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Admin login
+      tags:
+      - Admin
+  /admin/transactions:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve all transactions in the system. Only accessible by admin
+        users.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Transactions retrieved successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.MetadataResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/controller.TransactionAllUserResponses'
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get all transactions
+      tags:
+      - Transactions
+  /admin/transactions/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve a specific transaction by its ID. Only accessible by admin
+        users.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Transaction ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Transaction retrieved successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/controller.TransactionAllUserResponses'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get transaction by ID
+      tags:
+      - Transactions
+  /admin/users:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve a paginated list of all users (admin access only)
+      parameters:
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Page number (default is 1)
+        in: query
+        name: page
+        type: integer
+      - description: Number of items per page (default is 20)
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.MetadataResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/controller.UserbyAdminandPageResponse'
+                  type: array
+              type: object
+        "400":
+          description: Invalid page number
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get all users
+      tags:
+      - Admin
+  /admin/users/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete user account by ID (admin access only)
+      parameters:
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User deleted successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "404":
+          description: User not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Delete user
+      tags:
+      - Admin
+    get:
+      consumes:
+      - application/json
+      description: Retrieve user information by ID (admin access only)
+      parameters:
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/controller.UserbyAdminResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "404":
+          description: User not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get user by ID
+      tags:
+      - Admin
+    put:
+      consumes:
+      - application/json
+      description: Update user information (admin access only)
+      parameters:
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: User update data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/controller.UserbyAdminRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User updated successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "404":
+          description: User not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Update user data
+      tags:
+      - Admin
+  /cart:
+    get:
+      consumes:
+      - application/json
+      description: Get all items in the user's cart
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: get cards successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/controller.CartResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helper.Response'
+      summary: Get Cart
+      tags:
+      - Cart
+    post:
+      consumes:
+      - application/json
+      description: Add a product to the user's cart
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Request body for creating a cart
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/controller.CreateCartRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: create card successfully
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helper.Response'
+      summary: Create Cart
+      tags:
+      - Cart
+    put:
+      consumes:
+      - application/json
+      description: Update a product's quantity or type in the user's cart
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Request body for updating a cart
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/controller.UpdateCartRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: update card successfully
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helper.Response'
+      summary: Update Cart
+      tags:
+      - Cart
+  /cart/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove a product from the user's cart
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: delete card successfully
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helper.Response'
+      summary: Delete Cart
+      tags:
+      - Cart
+  /challenges/{challengeID}/details:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve challenge details for a specific challenge ID, including
+        title, difficulty, image, description, duration, experience points, coins,
+        and tasks
+      parameters:
+      - description: Challenge ID
+        in: path
+        name: challengeID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Challenge details retrieved successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/challenges.ChallengeDetails'
+              type: object
+        "400":
+          description: Bad request (e.g., Challenge ID is required)
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "404":
+          description: Challenge not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get unclaimed challenge details
+      tags:
+      - Challenges (User)
+  /challenges/active:
+    get:
+      consumes:
+      - application/json
+      description: Get challenges that are currently in progress for the user
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Page number (default is 1)
+        in: query
+        name: page
+        type: integer
+      - description: Filter by difficulty name (e.g., 'hard')
+        in: query
+        name: difficulty
+        type: string
+      - description: Filter by title (e.g., 'save water')
+        in: query
+        name: title
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Active challenges retrieved successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.MetadataResponse'
+            - properties:
+                data:
+                  items:
+                    additionalProperties: true
+                    type: object
+                  type: array
+              type: object
+        "204":
+          description: No content
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get active challenges
+      tags:
+      - Challenges (User)
+  /challenges/confirmations/progress:
+    put:
+      consumes:
+      - multipart/form-data
+      description: Updates the status of a challenge confirmation to "Done" and uploads
+        the confirmation image
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - in: formData
+        name: challenge_confirmation_id
+        required: true
+        type: string
+      - description: Challenge Confirmation Image
+        in: formData
+        name: challenge_confirmation_img
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Confirmation updated successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Update the progress of a challenge confirmation
+      tags:
+      - Challenge Confirmations
+  /challenges/details:
+    get:
+      consumes:
+      - application/json
+      description: Get challenge log and confirmation tasks for a specific challenge
+        log ID
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Challenge Log ID
+        in: query
+        name: challengeLogID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Challenge details retrieved successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/controller.ChallengeLogResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "404":
+          description: Challenge log not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get challenge details with confirmations
+      tags:
+      - Challenges (User)
+  /challenges/logs:
+    post:
+      consumes:
+      - application/json
+      description: Logs challenge participation with status "Progress"
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Challenge Log Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/controller.ChallengeLogRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Challenge log created successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Log a user's participation in a challenge
+      tags:
+      - Challenge Logs
+  /challenges/rewards:
+    post:
+      consumes:
+      - application/json
+      description: Claims exp and coin rewards from a completed challenge
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Claim Rewards Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/controller.ClaimRewardsRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Rewards claimed successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "404":
+          description: Challenge log not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Claim rewards for a challenge
+      tags:
+      - Challenge Rewards
+  /challenges/unclaimed:
+    get:
+      consumes:
+      - application/json
+      description: Get challenges that the user has not taken yet
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Page number (default is 1)
+        in: query
+        name: page
+        type: integer
+      - description: Limit per page (default is 20)
+        in: query
+        name: limit
+        type: integer
+      - description: Filter by difficulty name (e.g., 'easy')
+        in: query
+        name: difficulty
+        type: string
+      - description: Filter by title (e.g., 'recycle')
+        in: query
+        name: title
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Unclaimed challenges retrieved successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.MetadataResponse'
+            - properties:
+                data:
+                  items:
+                    additionalProperties: true
+                    type: object
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "404":
+          description: No unclaimed challenges available
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get unclaimed challenges
+      tags:
+      - Challenges (User)
+  /chatbots:
+    post:
+      consumes:
+      - application/json
+      description: Add a user message and get a response from the chatbot
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Chatbot message payload
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/controller.ChatbotRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Success Create Chatbot
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/controller.ChatbotResponse'
+              type: object
+        "400":
+          description: Invalid request payload
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Create a chatbot conversation
+      tags:
+      - Chatbot
+  /chatbots/{chatID}:
+    get:
+      consumes:
+      - application/json
+      description: Fetch all messages in a chatbot session using the ChatID
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Chat ID
+        in: path
+        name: chatID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success Get Chatbot
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/controller.ChatbotResponse'
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "404":
+          description: Chatbot not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Retrieve chatbot conversation by ChatID
+      tags:
+      - Chatbot
+  /forums:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve all forums with pagination
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: 'Page number (default: 1)'
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: get all forum successfully
+          schema:
+            $ref: '#/definitions/helper.MetadataResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helper.Response'
+      summary: Get All Forums
+      tags:
+      - Forum
+    post:
+      consumes:
+      - multipart/form-data
+      description: Create a new forum post with title, description, and optional topic
+        image
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Forum Title
+        in: formData
+        name: title
+        required: true
+        type: string
+      - description: Forum Description
+        in: formData
+        name: description
+        required: true
+        type: string
+      - description: Forum Topic Image
+        in: formData
+        name: topic_image
+        type: file
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: create forum successfully
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helper.Response'
+      summary: Create Forum
+      tags:
+      - Forum
+  /forums/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a forum by its ID. This action is restricted to users with
+        admin role.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Forum ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: delete forum successfully
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "404":
+          description: Forum not found
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helper.Response'
+      summary: Delete Forum
+      tags:
+      - Forum
+    get:
+      consumes:
+      - application/json
+      description: Retrieve detailed information about a forum, including messages
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Forum ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: get forum successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/controller.ForumGetDetailResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "404":
+          description: Forum not found
+          schema:
+            $ref: '#/definitions/helper.Response'
+      summary: Get Forum by ID
+      tags:
+      - Forum
+    put:
+      consumes:
+      - multipart/form-data
+      description: Update the details of an existing forum, including title, description,
+        and topic image.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Forum ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: New title of the forum
+        in: formData
+        name: title
+        required: true
+        type: string
+      - description: New description of the forum
+        in: formData
+        name: description
+        required: true
+        type: string
+      - description: New topic image for the forum
+        in: formData
+        name: topic_image
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: update forum successfully
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "404":
+          description: Forum not found
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helper.Response'
+      summary: Update Forum
+      tags:
+      - Forum
+  /forums/message:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Post a message to a specific forum. Optionally includes an image
+        with the message.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: ID of the forum to post the message to
+        in: formData
+        name: ForumID
+        required: true
+        type: string
+      - description: Content of the message
+        in: formData
+        name: Messages
+        required: true
+        type: string
+      - description: Optional image to include with the message
+        in: formData
+        name: message_image
+        type: file
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: create message successfully
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "404":
+          description: Forum not found
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helper.Response'
+      summary: Post Message to Forum
+      tags:
+      - Forum
+  /forums/message/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a specific message in a forum. Only the message owner or
+        an admin can delete it.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: ID of the forum message to delete
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: delete message successfully
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "404":
+          description: Message not found
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helper.Response'
+      summary: Delete Forum Message
+      tags:
+      - Forum
+    get:
+      consumes:
+      - application/json
+      description: Retrieve detailed information about a specific message in a forum.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: ID of the forum message to retrieve
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: get message forum id successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/controller.MessageResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "404":
+          description: Message not found
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helper.Response'
+      summary: Get Forum Message by ID
+      tags:
+      - Forum
+    put:
+      consumes:
+      - multipart/form-data
+      description: Update the content or image of a specific message in a forum.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: ID of the message to update
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Updated content of the message
+        in: formData
+        name: Messages
+        required: true
+        type: string
+      - description: Optional new image for the message
+        in: formData
+        name: message_image
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: update message successfully
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "404":
+          description: Message not found
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helper.Response'
+      summary: Update Forum Message
+      tags:
+      - Forum
+  /forums/user:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve a list of forums created by the authenticated user, with
+        pagination support.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Page number for pagination (default is 1)
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: get forums by user id successfully
+          schema:
+            $ref: '#/definitions/helper.MetadataResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/helper.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/helper.Response'
+      summary: Get Forums by User ID
+      tags:
+      - Forum
+  /impacts:
+    get:
+      consumes:
+      - application/json
+      description: Get a list of all impact categories
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Retrieve impacts successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/controller.ImpactCategoryResponse'
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Retrieve all impacts
+      tags:
+      - Impact
+    post:
+      consumes:
+      - application/json
+      description: Add a new impact category to the system
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Create impact payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/controller.CreateImpactRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Impact created successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Invalid input or validation error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Create a new impact
+      tags:
+      - Impact
+  /impacts/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove an impact category by its ID
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Impact ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Impact deleted successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "403":
+          description: Forbidden
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "404":
+          description: Impact not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Delete an impact
+      tags:
+      - Impact
+    get:
+      consumes:
+      - application/json
+      description: Get a specific impact category by its ID
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Impact ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Retrieve impact successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/controller.ImpactCategoryResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "404":
+          description: Impact not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Retrieve impact by ID
+      tags:
+      - Impact
+  /leaderboard:
+    get:
+      consumes:
+      - application/json
+      description: Fetch the leaderboard data for users with the role "User"
+      parameters:
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/controller.LeaderboardResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Retrieve leaderboard data
+      tags:
+      - Leaderboard
+  /media/upload:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Upload an image to Cloudinary and return the image URL
+      parameters:
+      - description: Image file to upload
+        in: formData
+        name: image
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Upload success
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/storages.ImageResponse'
+              type: object
+        "400":
+          description: Invalid input or validation error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Upload Image
+      tags:
+      - Upload
+  /products:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve all products with pagination, search, and sort functionality.
+      parameters:
+      - description: Page number
+        in: query
+        name: pages
+        type: integer
+      - description: Search by product name
+        in: query
+        name: search
+        type: string
+      - description: Sort by name or time (e.g., name_asc, name_desc, time_asc, time_desc)
+        in: query
+        name: sort
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Products retrieved successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.MetadataResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/controller.ProductResponse'
+                  type: array
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get all products
+      tags:
+      - Products
+    post:
+      consumes:
+      - application/json
+      description: Create a new product with associated images and categories. Requires
+        admin role.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Product data
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/controller.ProductRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Product created successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Create a product
+      tags:
+      - Products
+  /products/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove a product by its ID. Requires admin role.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Product deleted successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "404":
+          description: Product not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Delete a product
+      tags:
+      - Products
+    get:
+      consumes:
+      - application/json
+      description: Retrieve a specific product by its unique identifier.
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Product retrieved successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/controller.ProductResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "404":
+          description: Product not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get a product by ID
+      tags:
+      - Products
+    put:
+      consumes:
+      - application/json
+      description: Update product details including images and categories. Requires
+        admin role.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Updated product data
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/controller.ProductRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Product updated successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Update a product
+      tags:
+      - Products
+  /products/categories/{category_name}:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve products by a specific category name with pagination,
+        search, and sort functionality.
+      parameters:
+      - description: Category name
+        in: path
+        name: category_name
+        required: true
+        type: string
+      - description: Page number
+        in: query
+        name: pages
+        type: integer
+      - description: Search by product name
+        in: query
+        name: search
+        type: string
+      - description: Sort by name or time (e.g., name_asc, name_desc, time_asc, time_desc)
+        in: query
+        name: sort
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Products retrieved successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.MetadataResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/controller.ProductResponse'
+                  type: array
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "404":
+          description: Category not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get products by category
+      tags:
+      - Products
+  /reviews:
+    post:
+      consumes:
+      - application/json
+      description: Add a review for a specific product.
+      parameters:
+      - description: Request payload for creating a review
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/controller.CreateRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Review created successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad request or validation error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized access
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Create a new product review
+      tags:
+      - Reviews
+  /reviews/products/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get a list of reviews for a product by its ID.
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Reviews retrieved successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/controller.ResponseReviewProduct'
+                  type: array
+              type: object
+        "400":
+          description: Bad request or invalid ID format
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "404":
+          description: Product not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Retrieve reviews for a specific product
+      tags:
+      - Reviews
+  /transactions:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve all transactions made by the logged-in user.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Transactions retrieved successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.MetadataResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/controller.TransactionUserResponse'
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get user transactions
+      tags:
+      - Transactions
+    post:
+      consumes:
+      - application/json
+      description: Create a new transaction using the specified cart items.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Transaction Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/controller.TransactionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Transaction created successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/controller.TransactionResponse'
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Create a new transaction
+      tags:
+      - Transactions
+  /transactions/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a transaction by ID. Only accessible by admin users.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Transaction ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Transaction deleted successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Delete a transaction
+      tags:
+      - Transactions
+  /transactions/{id}/cancel:
+    put:
+      consumes:
+      - application/json
+      description: Cancel a transaction by ID. Only accessible by admin users.
+      parameters:
+      - description: Bearer Token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Transaction ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Transaction canceled successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Cancel a transaction
+      tags:
+      - Transactions
+  /users/avatar:
+    put:
+      consumes:
+      - multipart/form-data
+      description: Upload a new avatar for the authenticated user
+      parameters:
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Avatar image
+        in: formData
+        name: avatar
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Avatar updated successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Invalid input or validation error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Update User Avatar
+      tags:
+      - Users
+  /users/delete:
+    delete:
+      consumes:
+      - application/json
+      description: Delete the authenticated user's account
+      parameters:
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Delete user account
+      tags:
+      - Users
+  /users/forgot-password:
+    post:
+      consumes:
+      - application/json
+      description: Sends an OTP to the user's email for password reset verification
+      parameters:
+      - description: Forgot password request payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/controller.ForgotPasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OTP sent successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Invalid input or validation error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "404":
+          description: Email not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Request OTP for password reset
+      tags:
+      - Users
+  /users/forgot-password/verify-otp:
+    post:
+      consumes:
+      - application/json
+      description: Verifies the OTP sent to the user's email for password reset
+      parameters:
+      - description: Verify OTP request payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/controller.VerifyOTPRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OTP verified successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Invalid OTP
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Verify OTP for password reset
+      tags:
+      - Users
+  /users/google-callback:
+    get:
+      description: Handle the OAuth 2.0 callback from Google and authenticate the
+        user
+      parameters:
+      - description: Authorization code from Google
+        in: query
+        name: code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Login successful with JWT token
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/controller.UserLoginResponse'
+              type: object
+        "400":
+          description: Invalid request or missing code
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Google OAuth Callback
+      tags:
+      - Users
+  /users/login:
+    post:
+      consumes:
+      - application/json
+      description: Authenticate user and generate JWT token
+      parameters:
+      - description: User login payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/controller.UserLoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/controller.UserLoginResponse'
+              type: object
+        "400":
+          description: Invalid input or validation error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: User login
+      tags:
+      - Users
+  /users/login-google:
+    get:
+      description: Redirect to Google's OAuth 2.0 authentication page
+      produces:
+      - application/json
+      responses:
+        "302":
+          description: Redirect to Google OAuth
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Google Login
+      tags:
+      - Users
+  /users/profile:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve the authenticated user's profile information
+      parameters:
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/controller.UserInfoResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get user data
+      tags:
+      - Users
+  /users/register/request-otp:
+    post:
+      consumes:
+      - application/json
+      description: Sends an OTP to the user's email for registration verification
+      parameters:
+      - description: User registration payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/controller.UserRegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: OTP sent successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Invalid input or validation error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Request OTP for user registration
+      tags:
+      - Users
+  /users/register/verify-otp:
+    post:
+      consumes:
+      - application/json
+      description: Verifies the OTP sent to the user's email and registers the user
+      parameters:
+      - description: User verification payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/controller.UserVerifyRegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: User registered successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/controller.UserRegisterResponse'
+              type: object
+        "400":
+          description: Invalid OTP or input
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Verify OTP and register user
+      tags:
+      - Users
+  /users/reset-password:
+    put:
+      consumes:
+      - application/json
+      description: Resets the user's password after verifying OTP
+      parameters:
+      - description: Reset password request payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/controller.ResetPasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Password reset successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Invalid input or validation error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Reset user password
+      tags:
+      - Users
+  /users/update:
+    put:
+      consumes:
+      - application/json
+      description: Update the authenticated user's information
+      parameters:
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: User update payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/controller.UserUpdateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/controller.UserLoginResponse'
+              type: object
+        "400":
+          description: Invalid input or validation error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Update user data
+      tags:
+      - Users
+  /users/update/password:
+    put:
+      consumes:
+      - application/json
+      description: Updates the authenticated user's password using OTP and old password
+        verification
+      parameters:
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Password update payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/controller.UserPasswordUpdateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Password updated successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Invalid input or validation error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Update user password
+      tags:
+      - Users
+  /users/update/request-otp:
+    post:
+      consumes:
+      - application/json
+      description: Sends an OTP to the authenticated user's email for password update
+        verification
+      parameters:
+      - description: Bearer token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: OTP sent successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Invalid input or validation error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/helper.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Request OTP for password update
+      tags:
+      - Users
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
